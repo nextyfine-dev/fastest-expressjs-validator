@@ -1,6 +1,6 @@
-# 🚀 fastest-expressjs-validator
+# fastest-expressjs-validator 🚀
 
-Effortless Request Validation for Express.js
+🚀 Effortless Request Validation for [Express.js](https://github.com/expressjs/express)
 
 ## Description
 

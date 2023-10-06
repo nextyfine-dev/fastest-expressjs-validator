@@ -124,7 +124,7 @@ app.put("/user/:id", validateMultiRequest(multiSchema), (req, res) => {
 });
 ```
 
-## See More About Schemas all All Details
+## See More About Schemas and All Details
 
 For more details on [Documentation](https://github.com/icebob/fastest-validator/blob/master/README.md).
 

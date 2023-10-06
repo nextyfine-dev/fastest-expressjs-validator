@@ -126,8 +126,8 @@ app.put("/user/:id", validateMultiRequest(multiSchema), (req, res) => {
 
 ## See More About Schemas all All Details
 
-For more details on [Documentation](<[https://link-to-api-docs](https://github.com/icebob/fastest-validator/blob/master/README.md)>).
+For more details on [Documentation](https://github.com/icebob/fastest-validator/blob/master/README.md).
 
 ## License
 
-This package is open-source and available under the [MIT License](<[LICENSE](https://github.com/nextyfine-dev/fastest-express-validator/blob/main/LICENSE)>).
+This package is open-source and available under the [MIT License](https://github.com/nextyfine-dev/fastest-express-validator/blob/main/LICENSE).

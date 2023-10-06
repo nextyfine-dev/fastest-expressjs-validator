@@ -1,6 +1,6 @@
 {
   "name": "fastest-expressjs-validator",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "source/cjs/index.cjs",
   "module": "source/esm/index.mjs",
   "author": "nextyfine-dev",

@@ -1,0 +1,48 @@
+{
+  "name": "@fastest/express-validator",
+  "version": "0.0.1",
+  "main": "source/cjs/index.cjs",
+  "module": "source/esm/index.mjs",
+  "author": "nextyfine-dev",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "require": "./source/cjs/index.cjs",
+      "import": "./source/esm/index.mjs"
+    }
+  },
+  "types": "source/index.d.ts",
+  "scripts": {
+    "build": "bun run build:cjs && bun run build:esm",
+    "build:cjs": "bun x tsc -p tsconfig.cjs.json && mv source/cjs/index.js source/cjs/index.cjs",
+    "build:esm": "bun x tsc -p tsconfig.json && mv source/esm/index.js source/esm/index.mjs"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.18",
+    "@types/node": "^20.8.2",
+    "express": "^4.18.2",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
+  },
+  "files": [
+    "source"
+  ],
+  "dependencies": {
+    "fastest-validator": "^1.17.0"
+  },
+  "description": "@fastest/express-validator is a robust and easy-to-use middleware package for Express.js applications that simplifies request validation. With this package, you can effortlessly define validation schemas for request body, URL parameters, and query parameters using a straightforward syntax. It leverages the power of the fastest-validator library to validate incoming requests efficiently.",
+  "repository": "https://github.com/nextyfine-dev/fastest-express-validator.git",
+  "keywords": [
+    "express",
+    "validation",
+    "express validator",
+    "validators",
+    "fastest express validator",
+    "validate",
+    "fastest",
+    "middleware",
+    "schema",
+    "validation middleware",
+    "validate request"
+  ]
+}

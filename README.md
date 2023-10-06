@@ -1,10 +1,10 @@
-# 🚀 @fastest/express-validator
+# 🚀 fastest-expressjs-validator
 
 Effortless Request Validation for Express.js
 
 ## Description
 
-`@fastest/express-validator` simplifies request validation in Express.js applications. Define schemas for request bodies, URL parameters, and query parameters with ease. Improve the reliability and security of your Express API effortlessly. It leverages the power of the [`fastest-validator`](https://www.npmjs.com/package/fastest-validator) library to validate incoming requests efficiently.
+`fastest-expressjs-validator` simplifies request validation in Express.js applications. Define schemas for request bodies, URL parameters, and query parameters with ease. Improve the reliability and security of your Express API effortlessly. It leverages the power of the [`fastest-validator`](https://www.npmjs.com/package/fastest-validator) library to validate incoming requests efficiently.
 
 ## Features
 
@@ -24,18 +24,18 @@ Effortless Request Validation for Express.js
 
 ## Installation
 
-You can install `@fastest/express-validator` using npm or yarn:
+You can install `fastest-expressjs-validator` using npm or yarn:
 
 ### Using npm:
 
 ```bash
-npm install @fastest/express-validator
+npm install fastest-expressjs-validator
 ```
 
 ### Using yarn:
 
 ```bash
-yarn add @fastest/express-validator
+yarn add fastest-expressjs-validator
 ```
 
 ## Functions and Arguments
@@ -69,12 +69,12 @@ type SchemaType = ValidationSchema | MultiValidationSchema;
 const {
   validateRequest,
   validateMultiRequest,
-} = require("@fastest/express-validator");
+} = require("fastest-expressjs-validator");
 // or
 import {
   validateRequest,
   validateMultiRequest,
-} from "@fastest/express-validator";
+} from "fastest-expressjs-validator";
 ```
 
 ### Middleware for Single Request Type

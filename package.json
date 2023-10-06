@@ -1,5 +1,5 @@
 {
-  "name": "@fastest/express-validator",
+  "name": "fastest-expressjs-validator",
   "version": "0.0.1",
   "main": "source/cjs/index.cjs",
   "module": "source/esm/index.mjs",
@@ -15,7 +15,8 @@
   "scripts": {
     "build": "bun run build:cjs && bun run build:esm",
     "build:cjs": "bun x tsc -p tsconfig.cjs.json && mv source/cjs/index.js source/cjs/index.cjs",
-    "build:esm": "bun x tsc -p tsconfig.json && mv source/esm/index.js source/esm/index.mjs"
+    "build:esm": "bun x tsc -p tsconfig.json && mv source/esm/index.js source/esm/index.mjs",
+    "start": "bun run src/examples/app.ts"
   },
   "devDependencies": {
     "@types/express": "^4.17.18",
@@ -24,6 +25,7 @@
     "tslib": "^2.6.2",
     "typescript": "^5.2.2"
   },
+  "private": false,
   "files": [
     "source"
   ],

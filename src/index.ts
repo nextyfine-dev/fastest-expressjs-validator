@@ -30,57 +30,61 @@ const isMultiValidationSchema = (
   );
 };
 
-const catchAsync = (fn: Function) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    fn(req, res, next).catch(next);
-  };
-};
-
 export const validateRequest = (
   schema: SchemaType,
   requestType: ValidateReqType = "body",
   validatorOptions: ValidatorOptions = {}
 ) => {
-  return catchAsync(async (req: Request, res: Response, next: NextFunction) => {
-    const validator = new Validator({
-      useNewCustomCheckerFunction: true,
-      ...validatorOptions,
-    });
+  return async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const validator = new Validator({
+        useNewCustomCheckerFunction: true,
+        ...validatorOptions,
+      });
 
-    const validTypes: ValidateReqType[] = ["body", "params", "query"];
+      const validTypes: ValidateReqType[] = ["body", "params", "query"];
 
-    const err = {
-      type: "Validation Error!",
-      status: "error",
-      message: "Invalid request type!",
-    };
+      const err = {
+        type: "Validation Error!",
+        status: "error",
+        message: "Invalid request type!",
+      };
 
-    if (requestType === "multiple" && isMultiValidationSchema(schema)) {
-      for (const key of Object.keys(schema) as ValidateReqType[]) {
-        if (key === "multiple") continue;
-        if (!validTypes.includes(key)) return res.status(422).json(err);
+      if (requestType === "multiple" && isMultiValidationSchema(schema)) {
+        for (const key of Object.keys(schema) as ValidateReqType[]) {
+          if (key === "multiple") continue;
+          if (!validTypes.includes(key)) return res.status(422).json(err);
 
-        const validate = await validator.validate(req[key], schema[key]!);
+          const validate = await validator.validate(req[key], schema[key]!);
+          if (validate !== true)
+            return res.status(422).json({
+              ...err,
+              message: validate[0].message,
+              details: validate,
+            });
+        }
+      } else {
+        if (requestType !== "multiple" && !validTypes.includes(requestType))
+          return res.status(422).json(err);
+
+        const reqType = requestType !== "multiple" ? requestType : "body";
+        const validate = await validator.validate(req[reqType], schema);
+
         if (validate !== true)
           return res
             .status(422)
             .json({ ...err, message: validate[0].message, details: validate });
       }
-    } else {
-      if (requestType !== "multiple" && !validTypes.includes(requestType))
-        return res.status(422).json(err);
 
-      const reqType = requestType !== "multiple" ? requestType : "body";
-      const validate = await validator.validate(req[reqType], schema);
-
-      if (validate !== true)
-        return res
-          .status(422)
-          .json({ ...err, message: validate[0].message, details: validate });
+      next();
+    } catch (error) {
+      return res.status(400).json({
+        status: "fail",
+        message: "Something went wrong!",
+        error,
+      });
     }
-
-    next();
-  });
+  };
 };
 
 export const validateMultiRequest = (

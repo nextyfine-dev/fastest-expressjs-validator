@@ -15,9 +15,10 @@ export type MultiValidationSchema = {
   body?: ValidationSchema;
   params?: ValidationSchema;
   query?: ValidationSchema;
+  headers?: ValidationSchema;
 };
 
-type ValidateReqType = "body" | "params" | "query" | "multiple";
+type ValidateReqType = "body" | "params" | "query" | "headers" | "multiple";
 
 type SchemaType = ValidationSchema | MultiValidationSchema;
 
@@ -26,7 +27,7 @@ const isMultiValidationSchema = (
 ): schema is MultiValidationSchema => {
   return (
     typeof schema === "object" &&
-    ("body" in schema || "params" in schema || "query" in schema)
+    ("body" in schema || "params" in schema || "query" in schema || "headers" in schema)
   );
 };
 
@@ -42,7 +43,7 @@ export const validateRequest = (
         ...validatorOptions,
       });
 
-      const validTypes: ValidateReqType[] = ["body", "params", "query"];
+      const validTypes: ValidateReqType[] = ["body", "params", "query", "headers"];
 
       const err = {
         type: "Validation Error!",

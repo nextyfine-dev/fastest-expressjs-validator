@@ -46,7 +46,7 @@ A middleware function for request validation in Express.js.
 
 - **Arguments:**
   - `schema: SchemaType`: The validation schema for the request.
-  - `requestType: ValidateReqType = "body"`: The type of request ("body", "params", "query") to validate (default is "body").
+  - `requestType: ValidateReqType = "body"`: The type of request ("body", "params", "query", "headers") to validate (default is "body").
   - `validatorOptions: ValidatorOptions = { haltOnFirstError: true }`: Custom validation options (default options include halting on the first error).
 
 ### `validateMultiRequest`

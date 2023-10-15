@@ -49,3 +49,7 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
+
+.scannerwork
+.vscode
+coverage

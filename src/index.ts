@@ -58,12 +58,27 @@ export const validTypes: ValidateReqType[] = [
   "headers",
 ];
 
+export const query: ValidateOptions = {
+  requestType: "query",
+  multiRequest: false,
+};
+
+export const params: ValidateOptions = {
+  requestType: "params",
+  multiRequest: false,
+};
+export const body: ValidateOptions = {
+  requestType: "body",
+  multiRequest: false,
+};
+export const headers: ValidateOptions = {
+  requestType: "headers",
+  multiRequest: false,
+};
+
 export const validateRequest = (
   schema: SchemaType,
-  validateOptions: ValidateOptions = {
-    multiRequest: false,
-    requestType: "body",
-  },
+  validateOptions: ValidateOptions = body,
   validatorOptions: ValidatorOptions = {}
 ) => {
   return catchAsync(async (req: Request, res: Response, next: NextFunction) => {

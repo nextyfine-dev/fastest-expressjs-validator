@@ -11,6 +11,11 @@
     - [Using yarn:](#using-yarn)
   - [Functions and Arguments](#functions-and-arguments)
     - [`validateRequest`](#validaterequest)
+  - [Request Validation Options](#request-validation-options)
+    - [Query Validation](#query-validation)
+    - [Params Validation](#params-validation)
+    - [Body Validation](#body-validation)
+    - [Headers Validation](#headers-validation)
     - [`validateMultiRequest`](#validatemultirequest)
   - [Usage](#usage)
     - [Importing the package](#importing-the-package)
@@ -70,11 +75,49 @@ A middleware function for request validation in Express.js.
 
 - **Arguments:**
   - `schema: SchemaType`: The validation schema for the request.
-  - `validateOptions: ValidateOptions = {
-multiRequest: false,
-requestType: "body"}`
+  - `validateOptions: ValidateOptions = body`
     The type of request ("body", "params", "query", "headers") to validate (default is "body").
   - `validatorOptions: ValidatorOptions = { haltOnFirstError: true }`: Custom validation options (default options include halting on the first error).
+
+## Request Validation Options
+
+When using this middleware, you have the flexibility to specify the type of request you want to validate (e.g., "body," "params," "query," or "headers"). Here are the objects for `validateOptions`:
+
+### Query Validation
+
+```javascript
+const query = {
+  requestType: "query",
+  multiRequest: false,
+};
+```
+
+### Params Validation
+
+```javascript
+const params = {
+  requestType: "params",
+  multiRequest: false,
+};
+```
+
+### Body Validation
+
+```javascript
+const body = {
+  requestType: "body",
+  multiRequest: false,
+};
+```
+
+### Headers Validation
+
+```javascript
+const headers = {
+  requestType: "headers",
+  multiRequest: false,
+};
+```
 
 ### `validateMultiRequest`
 
@@ -97,11 +140,13 @@ type SchemaType = ValidationSchema | MultiValidationSchema;
 const {
   validateRequest,
   validateMultiRequest,
+  query,
 } = require("fastest-expressjs-validator");
 // or
 import {
   validateRequest,
   validateMultiRequest,
+  query,
 } from "fastest-expressjs-validator";
 ```
 
@@ -125,9 +170,7 @@ const qSchema = {
   q: "string",
 };
 
-const validateQuery = validateRequest(qSchema, {
-  requestType: "query",
-});
+const validateQuery = validateRequest(qSchema, query);
 
 app.get("/", validateQuery, (req, res) => {
   // ... your code here
@@ -164,6 +207,8 @@ import {
   ValidationSchema,
   validateMultiRequest,
   validateRequest,
+  query,
+  params,
 } from "fastest-expressjs-validator";
 
 const querySchema: ValidationSchema = {
@@ -205,14 +250,10 @@ const headerParamSchema: MultiValidationSchema = {
   },
 };
 
-export const validateQuery = validateRequest(querySchema, {
-  requestType: "query",
-});
+export const validateQuery = validateRequest(querySchema, query);
 
 export const validateBody = validateRequest(bodySchema);
-export const validateParams = validateRequest(paramsSchema, {
-  requestType: "params",
-});
+export const validateParams = validateRequest(paramsSchema, params);
 
 export const validateMultiReq = validateMultiRequest(multiSchema);
 

@@ -62,7 +62,6 @@ describe("Testing fastest expressjs validator middleware", () => {
     const res = await request(app)
       .post(`/headers/${mockData.param}`)
       .set(mockData.headers);
-    console.log('res.text :>> ', res.text);
     expect(res.statusCode).toEqual(200);
   });
 
